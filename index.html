@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage and Grade Calculator</title>
+</head>
+<body>
+
+    <h2>Marks Input Form</h2>
+
+    <form id="marksForm">
+        <!-- Math -->
+        <label for="mathTotal">Total Marks of Math:</label>
+        <input type="number" id="mathTotal" required><br><br>
+
+        <label for="mathObtained">Obtained Marks of Math:</label>
+        <input type="number" id="mathObtained" required><br><br>
+
+        <!-- Physics -->
+        <label for="physicsTotal">Total Marks of Physics:</label>
+        <input type="number" id="physicsTotal" required><br><br>
+
+        <label for="physicsObtained">Obtained Marks of Physics:</label>
+        <input type="number" id="physicsObtained" required><br><br>
+
+        <!-- Chemistry -->
+        <label for="chemistryTotal">Total Marks of Chemistry:</label>
+        <input type="number" id="chemistryTotal" required><br><br>
+
+        <label for="chemistryObtained">Obtained Marks of Chemistry:</label>
+        <input type="number" id="chemistryObtained" required><br><br>
+
+        <!-- Submit Button -->
+        <button type="button" onclick="calculateResult()">Submit</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function calculateResult() {
+            // Get the values of total and obtained marks for all subjects
+            let mathTotal = parseFloat(document.getElementById('mathTotal').value);
+            let mathObtained = parseFloat(document.getElementById('mathObtained').value);
+            
+            let physicsTotal = parseFloat(document.getElementById('physicsTotal').value);
+            let physicsObtained = parseFloat(document.getElementById('physicsObtained').value);
+            
+            let chemistryTotal = parseFloat(document.getElementById('chemistryTotal').value);
+            let chemistryObtained = parseFloat(document.getElementById('chemistryObtained').value);
+
+            // Calculate total marks and obtained marks
+            let totalMarks = mathTotal + physicsTotal + chemistryTotal;
+            let obtainedMarks = mathObtained + physicsObtained + chemistryObtained;
+
+            // Calculate percentage
+            let percentage = (obtainedMarks / totalMarks) * 100;
+
+            // Determine grade
+            let grade = '';
+            if (percentage < 33) {
+                grade = 'Fail';
+            } else if (percentage >= 33 && percentage < 40) {
+                grade = 'E';
+            } else if (percentage >= 40 && percentage < 50) {
+                grade = 'D';
+            } else if (percentage >= 50 && percentage < 60) {
+                grade = 'C';
+            } else if (percentage >= 60 && percentage < 70) {
+                grade = 'B';
+            } else if (percentage >= 70 && percentage < 80) {
+                grade = 'A';
+            } else if (percentage >= 80 && percentage <= 100) {
+                grade = 'A+';
+            }
+
+            // Display the result
+            document.getElementById('result').innerText = 
+                `Your Percentage: ${percentage.toFixed(2)}%\nYour Grade: ${grade}`;
+        }
+    </script>
+
+</body>
+</html>
